@@ -1,0 +1,440 @@
+@import "tailwindcss";
+
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&display=swap");
+
+/* ============================================
+   THEME — Tailwind v4
+============================================ */
+@theme {
+  /* Polices */
+  --font-sans: "Cormorant Garamond", Georgia, serif;
+
+  /* Couleurs */
+  --color-primary: #4654bb;
+  --color-primary-hover: #5462cc;
+  --color-secondary: #ff8a4b;
+  --color-dark-blue: #1f2a63;
+  --color-light-blue: #7c86d8;
+  --color-neutral-light: #f6f7fb;
+  --color-deep-text: #1a1a1a;
+  --color-professional-gray: #6b7280;
+
+  /* Animations */
+  --animate-fade-up: fadeInUp 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
+  --animate-show: toShow 1.5s ease-in-out;
+  --animate-appear: appear 1.5s ease-in-out infinite;
+  --animate-shine: shine 1.5s ease-in-out infinite;
+  --animate-scroll: scrollPulse 1.5s ease infinite;
+
+  /* Délais */
+  --delay-1: 0.2s;
+  --delay-2: 0.45s;
+  --delay-3: 0.7s;
+  --delay-4: 1s;
+
+  /* Keyframes */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translate3d(0, 35px, 0);
+    }
+    to {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  @keyframes toShow {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes appear {
+    0%,
+    100% {
+      opacity: 0.3;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes shine {
+    from {
+      left: -100%;
+    }
+    to {
+      left: 200%;
+    }
+  }
+
+  @keyframes scrollPulse {
+    0%,
+    100% {
+      opacity: 0.3;
+      transform: scaleY(0.6);
+    }
+    50% {
+      opacity: 1;
+      transform: scaleY(1);
+    }
+  }
+}
+
+/* ============================================
+   BASE
+============================================ */
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+
+  /* Body bloqué quand le menu mobile est ouvert */
+  body.menu-open {
+    overflow: hidden;
+  }
+
+  a {
+    color: white;
+    text-decoration: none;
+  }
+}
+
+/* ============================================
+   COMPONENTS
+============================================ */
+@layer components {
+  /* ----- TOP BAR ----- */
+  .first-navlinks {
+    @apply block px-4 py-2 text-[0.68rem] uppercase tracking-[0.15em]
+           text-white/70 border-r border-white/10
+           transition-colors duration-200
+           hover:bg-primary hover:text-white;
+  }
+  .first-navlinks:last-child {
+    @apply border-r-0;
+  }
+
+  /* ----- DESKTOP NAV LINKS ----- */
+  .nav-link {
+    @apply relative py-1.5 text-[0.68rem] uppercase tracking-[0.18em]
+           text-white/95 transition-colors duration-300
+           hover:text-secondary;
+  }
+  .nav-link::after {
+    content: "";
+    @apply absolute bottom-0 left-0 h-[1.5px] w-0 bg-secondary
+           transition-all duration-300;
+  }
+  .nav-link:hover::after {
+    @apply w-full;
+  }
+
+  /* ----- CTA NAV ----- */
+  .nav-cta {
+    @apply px-5 py-2 ml-4 text-[0.68rem] uppercase tracking-[0.15em]
+           bg-primary text-white rounded-sm
+           transition-all duration-200
+           hover:bg-dark-blue hover:-translate-y-px;
+  }
+
+  /* ----- BOUTONS HERO ----- */
+  .btn {
+    @apply relative inline-flex justify-center md:justify-start items-center gap-2
+           px-10 py-3.5 rounded-sm
+           text-[0.78rem] font-medium uppercase tracking-[0.12em]
+           cursor-pointer overflow-hidden
+           transition-transform duration-200 hover:-translate-y-0.5;
+  }
+
+  .btn-primary {
+    @apply bg-primary text-white shadow-[0_4px_20px_rgba(70,84,187,0.35)]
+           hover:bg-primary-hover hover:shadow-[0_8px_35px_rgba(70,84,187,0.55)];
+  }
+
+  .btn-outline {
+    @apply bg-transparent text-white border border-secondary
+           shadow-[0_4px_20px_rgba(255,138,75,0.15)]
+           hover:bg-secondary/10 hover:shadow-[0_8px_35px_rgba(255,138,75,0.3)];
+  }
+
+  /* Glow derrière les boutons */
+  .btn-glow {
+    @apply absolute inset-0 -z-10 rounded-full opacity-0 blur-2xl
+           transition-all duration-500;
+  }
+  .btn:hover .btn-glow {
+    @apply opacity-100 scale-150;
+  }
+  .btn-primary .btn-glow {
+    @apply bg-primary/40;
+  }
+  .btn-outline .btn-glow {
+    @apply bg-secondary/35;
+  }
+
+  /* ----- HAMBURGER BUTTON ----- */
+  .hamburger-btn {
+    @apply hidden flex-col justify-center items-center gap-[5px]
+           w-11 h-11 p-2.5 shrink-0 cursor-pointer
+           bg-white/8 border border-white/15 rounded
+           transition-all duration-200
+           hover:bg-white/14 hover:border-white/30
+           md:hidden;
+    /* affiché via JS / responsive */
+  }
+
+  .hamburger-btn span {
+    @apply block w-[22px] h-[1.5px] rounded-sm bg-white origin-center
+           transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)];
+  }
+
+  /* État ouvert → croix */
+  .hamburger-btn.is-open span:nth-child(1) {
+    @apply translate-y-[6.5px] rotate-45;
+  }
+  .hamburger-btn.is-open span:nth-child(2) {
+    @apply opacity-0 w-0;
+  }
+  .hamburger-btn.is-open span:nth-child(3) {
+    @apply -translate-y-[6.5px] -rotate-45;
+  }
+
+  /* ----- MOBILE OVERLAY (backdrop) ----- */
+  .mobile-overlay {
+    @apply hidden fixed inset-0 z-[150] opacity-0 pointer-events-none
+           bg-black/60 backdrop-blur-sm
+           transition-opacity duration-300;
+  }
+  .mobile-overlay.is-open {
+    @apply opacity-100 pointer-events-auto;
+  }
+
+  /* ----- MOBILE DRAWER ----- */
+  .mobile-menu {
+    @apply hidden fixed top-0 right-0 z-[160] h-[100svh] overflow-y-auto
+           w-[min(360px,85vw)] translate-x-full
+           border-l border-white/7
+           shadow-[-20px_0_60px_rgba(0,0,0,0.5)]
+           transition-transform duration-[450ms] ease-[cubic-bezier(0.16,1,0.3,1)]
+           pt-8 px-10 pb-12;
+    background: linear-gradient(160deg, #0d1229 0%, #1a2050 60%, #0d1229 100%);
+  }
+  .mobile-menu.is-open {
+    @apply translate-x-0;
+  }
+
+  /* Header du drawer */
+  .mobile-menu-header {
+    @apply flex items-center justify-between mb-12 pb-6
+           border-b border-white/8;
+  }
+
+  /* Bouton fermer (×) dans le drawer */
+  .mobile-close-btn {
+    @apply flex items-center justify-center w-9 h-9 shrink-0 cursor-pointer
+           bg-white/7 border border-white/12 rounded text-white text-base
+           transition-all duration-200
+           hover:bg-secondary/20 hover:border-secondary hover:text-secondary;
+  }
+
+  /* Liens du menu mobile */
+  .mobile-nav-item {
+    @apply opacity-0 translate-x-5 border-b border-white/5
+           transition-all duration-300 ease-out;
+  }
+  .mobile-menu.is-open .mobile-nav-item {
+    @apply opacity-100 translate-x-0;
+  }
+
+  /* Délais échelonnés */
+  .mobile-menu.is-open .mobile-nav-item:nth-child(1) {
+    transition-delay: 0.1s;
+  }
+  .mobile-menu.is-open .mobile-nav-item:nth-child(2) {
+    transition-delay: 0.15s;
+  }
+  .mobile-menu.is-open .mobile-nav-item:nth-child(3) {
+    transition-delay: 0.2s;
+  }
+  .mobile-menu.is-open .mobile-nav-item:nth-child(4) {
+    transition-delay: 0.25s;
+  }
+  .mobile-menu.is-open .mobile-nav-item:nth-child(5) {
+    transition-delay: 0.3s;
+  }
+  .mobile-menu.is-open .mobile-nav-item:nth-child(6) {
+    transition-delay: 0.35s;
+  }
+  .mobile-menu.is-open .mobile-nav-item:nth-child(7) {
+    transition-delay: 0.4s;
+  }
+
+  .mobile-nav-link {
+    @apply flex items-center justify-between py-4
+           text-[1.05rem] uppercase tracking-[0.12em] text-white/75
+           transition-all duration-200
+           hover:text-secondary hover:pl-2;
+  }
+
+  .mobile-nav-arrow {
+    @apply text-[0.65rem] opacity-40
+           transition-all duration-200;
+  }
+  .mobile-nav-link:hover .mobile-nav-arrow {
+    @apply opacity-100 translate-x-1 text-secondary;
+  }
+
+  /* Quick links section */
+  .mobile-quick-links {
+    @apply mt-10 pt-6 border-t border-white/6;
+  }
+
+  .mobile-quick-label {
+    @apply text-[0.62rem] uppercase tracking-[0.22em] text-white/30 mb-4 block;
+  }
+
+  .mobile-quick-tag {
+    @apply inline-block px-3 py-1.5 text-[0.65rem] uppercase tracking-[0.12em]
+           text-white/55 border border-white/10 rounded-sm
+           transition-all duration-200
+           hover:bg-primary hover:border-primary hover:text-white;
+  }
+
+  /* CTA mobile */
+  .mobile-cta-btn {
+    @apply flex items-center justify-center gap-2
+           w-full mt-10 px-6 py-4
+           bg-primary text-white rounded-sm
+           text-[0.75rem] uppercase tracking-[0.15em]
+           transition-all duration-200
+           hover:bg-dark-blue hover:-translate-y-0.5;
+  }
+}
+
+/* ============================================
+   UTILITIES
+============================================ */
+@layer utilities {
+  /* Animations */
+  .animate-fade-up {
+    animation: var(--animate-fade-up);
+    will-change: transform, opacity;
+  }
+  .animate-show {
+    animation: var(--animate-show);
+  }
+  .animate-appear {
+    animation: var(--animate-appear);
+  }
+  .animate-shine {
+    animation: var(--animate-shine);
+  }
+  .animate-scroll {
+    animation: var(--animate-scroll);
+  }
+
+  .delay-1 {
+    animation-delay: var(--delay-1);
+  }
+  .delay-2 {
+    animation-delay: var(--delay-2);
+  }
+  .delay-3 {
+    animation-delay: var(--delay-3);
+  }
+  .delay-4 {
+    animation-delay: var(--delay-4);
+  }
+
+  /* Logo shine */
+  .logo-shine {
+    @apply absolute top-0 -inset-full h-full w-1/2 z-20
+           -skew-x-12 pointer-events-none;
+    background: linear-gradient(
+      to right,
+      transparent,
+      rgba(255, 255, 255, 0.2),
+      transparent
+    );
+  }
+  .logo-link:hover .logo-shine {
+    animation: shine 0.8s ease-in-out forwards;
+  }
+
+  /* Scroll indicator line */
+  .scroll-line {
+    @apply w-px h-10 origin-top;
+    background: linear-gradient(to bottom, transparent, white);
+  }
+
+  /* Utilitaires responsive display */
+  .show-mobile {
+    @apply hidden max-[850px]:flex;
+  }
+  .hide-mobile {
+    @apply flex max-[850px]:hidden;
+  }
+}
+
+/* ============================================
+   RESPONSIVE
+============================================ */
+
+/* --- Tablet (≤ 1024px) --- */
+@media (max-width: 1024px) {
+  .desktop-nav ul {
+    gap: 1rem;
+  }
+  .nav-link {
+    font-size: 0.62rem;
+    letter-spacing: 0.11em;
+  }
+}
+
+/* --- Mobile (≤ 768px) --- */
+@media (max-width: 850px) {
+  /* Affiche le hamburger */
+  .hamburger-btn {
+    display: flex;
+  }
+
+  /* Affiche le drawer + overlay */
+  .mobile-overlay,
+  .mobile-menu {
+    display: block;
+  }
+
+  /* Hero overlay plus opaque pour la lisibilité */
+  .hero-overlay {
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.78) 0%,
+      rgba(0, 0, 0, 0.65) 50%,
+      rgba(0, 0, 0, 0.82) 100%
+    ) !important;
+  }
+}
+
+/* --- Petit mobile (≤ 480px) --- */
+@media (max-width: 480px) {
+  .mobile-menu {
+    padding: 1.5rem 1.75rem 2.5rem;
+  }
+}
