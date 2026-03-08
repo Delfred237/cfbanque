@@ -26,7 +26,7 @@
   --animate-shine: shine 1.5s ease-in-out infinite;
   --animate-scroll: scrollPulse 1.5s ease infinite;
   --animate-reveal-card: revealCard 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) both;
-  -animate-slide-in-left: slideInLeft 1s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  --animate-slide-in-left: slideInLeft 1s cubic-bezier(0.2, 0.8, 0.2, 1) both;
   --animate-slide-in-right: slideInRight 1s cubic-bezier(0.2, 0.8, 0.2, 1) both;
 
   /* Délais */
@@ -161,7 +161,7 @@
     text-align: center;
     letter-spacing: 0.1em;
     color: var(--color-primary);
-    @apply text-xl mb-10 md:text-2xl lg:text-3xl lg:mt-14;
+    @apply text-xl mb-14 md:text-2xl lg:text-3xl lg:mt-18;
 
     &::after {
       content: "";
