@@ -26,6 +26,8 @@
   --animate-shine: shine 1.5s ease-in-out infinite;
   --animate-scroll: scrollPulse 1.5s ease infinite;
   --animate-reveal-card: revealCard 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  -animate-slide-in-left: slideInLeft 1s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  --animate-slide-in-right: slideInRight 1s cubic-bezier(0.2, 0.8, 0.2, 1) both;
 
   /* Délais */
   --delay-1: 0.2s;
@@ -42,6 +44,28 @@
     to {
       opacity: 1;
       transform: translate3d(0, 0, 0);
+    }
+  }
+
+  @keyframes slideInLeft {
+    0% {
+      opacity: 0;
+      transform: translateX(-50px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slideInRight {
+    0% {
+      opacity: 0;
+      transform: translateX(50px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
     }
   }
 
@@ -128,7 +152,21 @@
   }
 
   section {
-    @apply md:px-16 py-24;
+    @apply py-10 px-6 w-full overflow-hidden md:px-16 lg:py-24;
+  }
+
+  .subtitle {
+    font-weight: 500;
+    text-transform: capitalize;
+    text-align: center;
+    letter-spacing: 0.1em;
+    color: var(--color-primary);
+    @apply text-xl mb-10 md:text-2xl lg:text-3xl lg:mt-14;
+
+    &::after {
+      content: "";
+      @apply block w-16 h-0.5 bg-secondary mt-2 mx-auto;
+    }
   }
 }
 
@@ -419,6 +457,22 @@
   .scroll-line {
     @apply w-px h-10 origin-top;
     background: linear-gradient(to bottom, transparent, white);
+  }
+
+  /* section 2 animation  */
+  .reveal-left {
+    opacity: 0;
+  }
+  .reveal-right {
+    opacity: 0;
+  }
+
+  /* Classes activées par le JS */
+  .is-visible.reveal-left {
+    animation: var(--animate-slide-in-left);
+  }
+  .is-visible.reveal-right {
+    animation: var(--animate-slide-in-right);
   }
 
   /* Utilitaires responsive display */

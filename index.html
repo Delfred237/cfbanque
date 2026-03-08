@@ -12,6 +12,7 @@
       name="description"
       content="CF BANQUE is investment banking, financial planning, assets management, wealth management, CAPITAL Markets."
     />
+    <meta itemprop="serviceType" content="Investment Banking" />
     <link rel="stylesheet" href="./assets/css/output.css" />
     <link
       rel="shortcut icon"
@@ -257,50 +258,132 @@
     </header>
 
     <main>
+      <!-- section 1  -->
       <section
-        class="w-full px-4 md:w-[80%] lg:absolute lg:left-1/2 lg:-translate-x-1/2 lg:z-500 lg:-translate-y-1/2 py-10 mx-auto grid gap-8 grid-cols-1 items-stretch md:grid-cols-2 lg:grid-cols-4 place-items-center"
+        class="md:w-[80%] lg:absolute lg:left-1/2 lg:-translate-x-1/2 lg:z-50 lg:-translate-y-1/2 mx-auto grid gap-8 grid-cols-1 items-stretch md:grid-cols-2 lg:grid-cols-4 place-items-center"
+        aria-label="Investment banking services"
       >
-        <article class="article-first-section reveal-on-scroll">
+        <h2 class="sr-only">Investment Banking Services</h2>
+
+        <article
+          class="article-first-section reveal-on-scroll"
+          itemscope
+          itemtype="https://schema.org/FinancialService"
+        >
           <img
             class="icon-article-first-section"
             src="./assets/images/banking-online-web-bank-svgrepo-com.svg"
-            alt="banking-online-web-bank-svgrepo-com.svg"
+            alt="Investment banking strategic advisory service"
+            loading="lazy"
+            decoding="async"
           />
-          <h3>Investment Banking & Strategic Advisory</h3>
+          <h3 itemprop="name">Investment Banking & Strategic Advisory</h3>
         </article>
+
         <article
           class="article-first-section reveal-on-scroll"
           style="animation-delay: 150ms"
+          itemscope
+          itemtype="https://schema.org/FinancialService"
         >
           <img
             class="icon-article-first-section"
             src="./assets/images/loan-svgrepo-com.svg"
-            alt="loan-svgrepo-com.svg"
+            alt="Capital markets and structured finance solutions"
+            loading="lazy"
+            decoding="async"
           />
-          <h3>Capital Markets & Structured Finance</h3>
+          <h3 itemprop="name">Capital Markets & Structured Finance</h3>
         </article>
+
         <article
           class="article-first-section reveal-on-scroll"
           style="animation-delay: 300ms"
+          itemscope
+          itemtype="https://schema.org/FinancialService"
         >
           <img
             class="icon-article-first-section"
             src="./assets/images/bank-svgrepo-com.svg"
-            alt="bank-svgrepo-com.svg"
+            alt="Sovereign and infrastructure financing services"
+            loading="lazy"
+            decoding="async"
           />
-          <h3>Sovereign & Infrastructure Finance</h3>
+          <h3 itemprop="name">Sovereign & Infrastructure Finance</h3>
         </article>
+
         <article
           class="article-first-section reveal-on-scroll"
           style="animation-delay: 450ms"
+          itemscope
+          itemtype="https://schema.org/FinancialService"
         >
           <img
             class="icon-article-first-section"
             src="./assets/images/strategy-success-task-svgrepo-com.svg"
-            alt="strategy-success-task-svgrepo-com.svg"
+            alt="Strategic asset and capital management services"
+            loading="lazy"
+            decoding="async"
           />
-          <h3>Asset & Strategic Capital Management</h3>
+          <h3 itemprop="name">Asset & Strategic Capital Management</h3>
         </article>
+      </section>
+
+      <!-- section 2 -->
+      <section aria-labelledby="about-cfbanque">
+        <h2 id="about-cfbanque" class="subtitle reveal-left reveal-on-scroll">
+          About CFBanque Investment
+        </h2>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-stretch">
+          <!-- Texte -->
+          <div class="reveal-right reveal-on-scroll">
+            <p class="text-deep-text text-lg mb-6 text-justify md:text-left">
+              CFBanque Investment is an international investment banking
+              institution dedicated to structuring complex financial solutions
+              for corporations, sovereign entities and institutional investors
+              operating across Europe, Africa and the Middle East.
+            </p>
+
+            <p class="text-deep-text text-lg mb-6 text-justify md:text-left">
+              Our expertise spans investment banking advisory, capital markets
+              structuring and strategic financial governance for global
+              institutions navigating sophisticated macroeconomic environments.
+            </p>
+
+            <p class="text-deep-text text-lg mb-10 text-justify md:text-left">
+              We operate at the convergence of capital allocation, macroeconomic
+              strategy and institutional governance, structuring every mandate
+              with long-term systemic stability and sustainable financial
+              architecture in mind.
+            </p>
+
+            <div class="text-center lg:text-left">
+              <a
+                href="#"
+                class="btn btn-primary"
+                aria-label="Learn more about CFBanque Investment"
+              >
+                <div class="btn-glow"></div>
+                <span>Learn More</span>
+                <i class="fa-solid fa-arrow-up rotate-45"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Image -->
+          <figure
+            class="overflow-hidden rounded-lg reveal-left reveal-on-scroll"
+          >
+            <img
+              class="w-full object-cover"
+              src="./assets/images/about.webp"
+              alt="CFBanque Investment financial advisory professionals discussing investment strategy"
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
+        </div>
       </section>
     </main>
     <footer></footer>
