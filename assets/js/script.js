@@ -44,3 +44,24 @@ scrollLinks.forEach((link) => {
     document.querySelector(id).scrollIntoView({ behavior: "smooth" });
   });
 });
+
+// Intersection Observer
+const observerOptions = {
+  root: null, // Surveille par rapport au viewport
+  threshold: 0.15, // Déclenche quand 15% de la section est visible
+};
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("is-visible");
+      // Une fois animé, on peut arrêter de surveiller l'élément
+      observer.unobserve(entry.target);
+    }
+  });
+}, observerOptions);
+
+// On cible tous nos éléments à animer
+document.querySelectorAll(".reveal-on-scroll").forEach((el) => {
+  observer.observe(el);
+});

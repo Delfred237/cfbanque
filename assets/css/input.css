@@ -25,6 +25,7 @@
   --animate-appear: appear 1.5s ease-in-out infinite;
   --animate-shine: shine 1.5s ease-in-out infinite;
   --animate-scroll: scrollPulse 1.5s ease infinite;
+  --animate-reveal-card: revealCard 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) both;
 
   /* Délais */
   --delay-1: 0.2s;
@@ -83,6 +84,17 @@
       transform: scaleY(1);
     }
   }
+
+  @keyframes revealCard {
+    0% {
+      opacity: 0;
+      transform: translateY(40px) scale(0.95);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
 }
 
 /* ============================================
@@ -113,6 +125,10 @@
   a {
     color: white;
     text-decoration: none;
+  }
+
+  section {
+    @apply md:px-16 py-24;
   }
 }
 
@@ -325,6 +341,27 @@
            text-[0.75rem] uppercase tracking-[0.15em]
            transition-all duration-200
            hover:bg-dark-blue hover:-translate-y-0.5;
+  }
+
+  /* section one components */
+  .article-first-section {
+    @apply flex flex-col flex-1 items-center w-full gap-4 text-center bg-neutral-100
+           py-5 px-4 rounded-lg shadow-[0_0_20px_0_rgba(0,0,0,0.25)]
+           transition-all duration-300 ease-in-out hover:shadow-[0_0_20px_0_rgba(0,0,0,0.35)];
+  }
+
+  .icon-article-first-section {
+    @apply w-12 h-12 shrink-0;
+  }
+
+  /* reveal animation  */
+  .reveal-on-scroll {
+    opacity: 0;
+    will-change: transform, opacity;
+  }
+
+  .is-visible {
+    animation: var(--animate-reveal-card);
   }
 }
 

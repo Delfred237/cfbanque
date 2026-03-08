@@ -126,7 +126,7 @@
          HEADER / HERO
     ============================================= -->
     <header
-      class="relative w-full h-svh min-h-150 bg-[url(../images/bg.jpeg)] bg-cover bg-center"
+      class="relative w-full h-svh min-h-150 bg-[url(../images/bg.webp)] bg-cover bg-center"
     >
       <!-- Overlay gradient -->
       <div
@@ -166,7 +166,7 @@
               <img
                 src="./assets/images/logo.webp"
                 alt="CF Banque"
-                class="block h-12 max-md:h-9 w-auto max-w-45 object-contain"
+                class="block h-14 max-md:h-12 w-auto max-w-45 object-contain"
               />
               <div class="logo-shine" aria-hidden="true"></div>
             </a>
@@ -246,7 +246,7 @@
 
       <!-- Scroll indicator -->
       <div
-        class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 opacity-50 hover:opacity-100 transition-opacity duration-300 cursor-default"
+        class="md:hidden absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 opacity-50 hover:opacity-100 transition-opacity duration-300 cursor-default"
         aria-hidden="true"
       >
         <div class="scroll-line animate-scroll"></div>
@@ -256,7 +256,53 @@
       </div>
     </header>
 
-    <main></main>
+    <main>
+      <section
+        class="w-full px-4 md:w-[80%] lg:absolute lg:left-1/2 lg:-translate-x-1/2 lg:z-500 lg:-translate-y-1/2 py-10 mx-auto grid gap-8 grid-cols-1 items-stretch md:grid-cols-2 lg:grid-cols-4 place-items-center"
+      >
+        <article class="article-first-section reveal-on-scroll">
+          <img
+            class="icon-article-first-section"
+            src="./assets/images/banking-online-web-bank-svgrepo-com.svg"
+            alt="banking-online-web-bank-svgrepo-com.svg"
+          />
+          <h3>Investment Banking & Strategic Advisory</h3>
+        </article>
+        <article
+          class="article-first-section reveal-on-scroll"
+          style="animation-delay: 150ms"
+        >
+          <img
+            class="icon-article-first-section"
+            src="./assets/images/loan-svgrepo-com.svg"
+            alt="loan-svgrepo-com.svg"
+          />
+          <h3>Capital Markets & Structured Finance</h3>
+        </article>
+        <article
+          class="article-first-section reveal-on-scroll"
+          style="animation-delay: 300ms"
+        >
+          <img
+            class="icon-article-first-section"
+            src="./assets/images/bank-svgrepo-com.svg"
+            alt="bank-svgrepo-com.svg"
+          />
+          <h3>Sovereign & Infrastructure Finance</h3>
+        </article>
+        <article
+          class="article-first-section reveal-on-scroll"
+          style="animation-delay: 450ms"
+        >
+          <img
+            class="icon-article-first-section"
+            src="./assets/images/strategy-success-task-svgrepo-com.svg"
+            alt="strategy-success-task-svgrepo-com.svg"
+          />
+          <h3>Asset & Strategic Capital Management</h3>
+        </article>
+      </section>
+    </main>
     <footer></footer>
   </body>
 </html>
